@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo chmod -R 755
+chmod –r +x 0x01-shell_permissions
