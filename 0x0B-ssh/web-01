@@ -3,6 +3,6 @@
 
 eval $("ssh-agent")
 
-ssh-add /alx-system_engineering-devops/0x0B-ssh/0x0B/school
+ssh-add /0x0B-ssh/school
 
 ssh ubuntu@8.204.8.255
