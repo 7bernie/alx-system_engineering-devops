@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-# srver-01 login credetials
-
-eval $("ssh-agent")
-
-ssh-add /0x0B-ssh/school
-
-ssh ubuntu@8.204.8.255
