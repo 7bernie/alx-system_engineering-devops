@@ -16,7 +16,7 @@ PATH_TO_SSH_KEY=$4
 
 # Disable strict host key check
 
-sco -o "StrickHostKeyChecking=no" -i "PATH_TO_SSH_KEY" "PATH_TO_FILE" "USERNAME@$IP:~/"
+sco -o "StrictHostKeyChecking=no" -i "$PATH_TO_SSH_KEY" "$PATH_TO_FILE" "$USERNAME@$IP:~/"
 
 # Check if file transfer was successful
 
