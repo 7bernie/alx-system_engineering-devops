@@ -9,14 +9,14 @@ fi
 
 # Assign parameters to varables
 
-PATH_TO_FILE=$1
-IP=$2
-USERNAME=$3
-PATH_TO_SSH_KEY=$4
+path_to_file=$1
+ip=$2
+username=$3
+path_to_ssh_key=$4
 
 # Disable strict host key check
 
-sco -o "StrictHostKeyChecking=no" -i "$PATH_TO_SSH_KEY" "$PATH_TO_FILE" "$USERNAME@$IP:~/"
+sco -o "StrictHostKeyChecking=no" -i "$path_to_ssh_key" "$path_to_file" "$username@$ip:~/"
 
 # Check if file transfer was successful
 
