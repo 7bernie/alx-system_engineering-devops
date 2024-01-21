@@ -34,23 +34,21 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-        # adds `X-Forwarded-For` headers to each request
-        option forwardfor
-        # reduces latency by closing connections but maintaining keep-alives
-        option http-server-close
-
 frontend bers-frontend
-         bind *:80
-         reqadd X-Forwarded-Proto:\ http
-         default_backend backend_nodes
+	bind *:80
+	mode http
+	http-request redirect scheme https code 301 unless { ssl_fc }
+	http-request set-header X-Forwarded-Proto http
+	default_backend bers-backend
 
-frontend bers-frontend
-        bind *:443 ssl crt /etc/haproxy/certs/www.bers.tech.pem
-        http-request set-header X-SSL %[ssl_fc]
-        reqadd X-Forwarded-Proto:\ https
-        default_backend backend_nodes
+frontend bers-frontend-ssl
+	bind *:443 ssl crt /etc/haproxy/certs/www.bers.tech.pem
+	mode http
+	http-request set-header X-Forwarded-Proto https
+	default_backend bers-backend
 
 backend bers-backend
-        balance roundrobin
-        server 130902-web-01 18.204.8.255:80 check
+        mode http
+    	balance roundrobin
+	server 130902-web-01 18.204.8.255:80 check
         server 130902-web-02 35.175.130.36:80 check
